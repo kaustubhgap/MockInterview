@@ -1,0 +1,19 @@
+Years of Experience : 6- 10 years
+
+Musts:
+
+MS/PhD in a relevant technical field with an excellent GPA
+Experience with image processing and/or computer vision
+Working knowledge of Python, Pytorch, ONNX, Tensor-Flow, C++
+5 years AI/DL industry experience, especially for supervised learning
+Proven track record of having shipped/released AI products or features
+Strong Wants:
+
+Experience in developing AI models for medical devices
+Experience working w/ medical regulatory agencies (e.g. FDA)
+Experience either managing or providing technical leadership
+Working knowledge of ultrasound, or having applied AI models to U/S
+Working knowledge of programming GPU’s, or leveraging GPU’s in your AI inference chain
+Knowledge of LLM, LoRA, Embeddings, Foundation Models, USL
+Working w/ databases, SQL
+Deploying models on Smart Phones (edge AI w/ inference running on phone) o Experience with Kotlin and/or Swift
