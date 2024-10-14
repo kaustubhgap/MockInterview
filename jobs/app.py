@@ -1,10 +1,11 @@
+
+
+
 import os
 import sys
 
 module_path = os.path.abspath(os.path.join('.'))
 sys.path.append(module_path)
-
-os.environ['OPENAI_API_KEY'] = open('api.txt').read()
 
 from Agents import InitAgent, QuestionAgent, ResponseAgent
 from Agents.templates import InitTemplate, InterviewTemplate, ResponseTemplate
@@ -24,6 +25,8 @@ from load_whisper import transcribe, load_stt
 
 config = ConfigParser()
 config.read("config.ini")
+
+os.environ['OPENAI_API_KEY'] = open('api.txt').read()
 
 # setup variables for db path
 ROOT_DIR:str = config["USERDB"]["url"]
@@ -113,7 +116,6 @@ if __name__ == "__main__":
         current_question_type = init_var[2]
         current_difficulty = init_var[3]
 
-        
         topic_conversation['topic_name'] = current_topic
         topic_conversation['start_time'] = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
         topic_conversation['questions'] = []
@@ -151,7 +153,7 @@ if __name__ == "__main__":
             print("\n")
             print("next_question",current_question)
             print("\n")
-            
+
             current_question_dict['answer'] = {}
             current_question_dict['answer']['start_time'] = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
             
