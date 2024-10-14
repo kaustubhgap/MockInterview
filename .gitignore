@@ -3,3 +3,4 @@ DB/
 conversations/
 api.txt
 models/
+__pycache__

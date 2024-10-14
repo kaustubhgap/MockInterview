@@ -10,7 +10,7 @@ from Agents import InitAgent, QuestionAgent, ResponseAgent
 from Agents.templates import InitTemplate, InterviewTemplate, ResponseTemplate
 from Logger import Logger
 
-from helpers import make_token, convert_to_string, speak, speech_to_text
+from helpers import make_token, convert_to_string, speak
 from configparser import ConfigParser
 
 from datetime import datetime
@@ -120,8 +120,8 @@ if __name__ == "__main__":
         questions = topic_conversation['questions']
 
         # chatbot flow: S2
-        current_topic
         while True:
+            question_count = len(questions)
             generated_question = question_agent.fetch_output(job_description=JOB_DESCRIPTION, 
                                                               topics=all_topics,
                                                               current_topic=current_topic,
@@ -137,9 +137,10 @@ if __name__ == "__main__":
             current_question = generated_question['question']
             current_feedback = generated_question['feedback']
             current_question_type = generated_question['question_type']
-            switch_question = generated_question['switch_topic']
+            switch_topic = generated_question['switch_topic']
 
-            if switch_question.lower() == "yes" or input("do you want to switch to a different topic [yes/no]: ").lower() == "yes":
+            user_preference = input(f"Current topic being questioned is {current_topic}.\nDo you wish to continue with the same topic or switch to a different one?") if not question_count else switch_topic
+            if user_preference.lower() == "yes":
                 break
 
             question_history += f"{current_topic} - {current_question}\n"
@@ -173,7 +174,7 @@ if __name__ == "__main__":
                 questions[-1]['feedback'] = current_feedback
             print("current topic: ", current_topic)
             questions.append(current_question_dict)
-        
+            
         conversation.append(topic_conversation)
 
     logger.update_session("interview", value=interview)
