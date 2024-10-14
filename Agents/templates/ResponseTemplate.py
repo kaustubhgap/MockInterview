@@ -1,4 +1,4 @@
-answer_template_1 = {"prompt":"""###Instruction:
+Prompts = {"prompt_good" : {"prompt":"""###Instruction:
 You are a candidate appearing for a job.
 ###Instruction: Look at the job description below and be prepared for the interview.
 ###Job Description
@@ -19,5 +19,6 @@ Format for your output:
 Now answer the question: {question}
 """,
 
-"input_variables":['job_description','question']
+"inputs":['job_description','question']
+}
 }

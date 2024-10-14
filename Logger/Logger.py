@@ -13,7 +13,7 @@ SESSION_MAP:str = config["USERDB"]["sessions_hash"]
 
 
 class Logger(object):
-    def __init__(self, root_dir) -> None:
+    def __init__(self, root_dir:str) -> None:
         self.root_dir:str = root_dir
         
     
@@ -36,12 +36,11 @@ class Logger(object):
     @staticmethod
     def write_json(data:dict, file: str) -> dict:
         with open(
-                os.path.join(ROOT_DIR, USER_MAP),
+                os.path.join(file),
                 "w"
             ) as f:
-                json.dump(data, f)
+                json.dump(data, f, indent=2)
     
-
     def create_session(self, user_id, session_id) -> None:
 
         user_sessions:dict = self.read_json(os.path.join(ROOT_DIR, self.user_hash[user_id], SESSION_MAP))
@@ -62,7 +61,7 @@ class Logger(object):
         self.user_sessions = user_sessions
 
         self.current_session = self.read_json(os.path.join(ROOT_DIR, self.user_hash[user_id], self.user_sessions[session_id]))
-        
+        self.session_id = session_id
 
     def create_user(self, user_id) -> None:
         
@@ -81,10 +80,12 @@ class Logger(object):
             open(os.path.join(ROOT_DIR,user_id,f"{SESSION_MAP}"), "w")
             
         self.user_hash = current_users
+        self.user_id = user_id
 
     
     def update_session(self,*keys, value):
         session = self.current_session.copy()
+        print(session)
         head = session
         for key in keys[:-1]:
             if key in session:
@@ -93,9 +94,11 @@ class Logger(object):
             else:
                 session[key] = {}
                 session = session[key]
-        session[keys[-1]] = value
+        session[keys[-1]] = {"text":value}
 
         self.current_session = head
+        self.write_json(self.current_session, 
+                        os.path.join(ROOT_DIR, self.user_hash[self.user_id], self.user_sessions[self.session_id]))
     
     
     def remove_user(self, user_id=None) -> None:
