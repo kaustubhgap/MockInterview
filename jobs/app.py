@@ -151,12 +151,10 @@ if __name__ == "__main__":
             print("\n")
             print("next_question",current_question)
             print("\n")
-
+            
             current_question_dict['answer'] = {}
             current_question_dict['answer']['start_time'] = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-            # generated_answer = answer_agent.fetch_output(job_description=JOB_DESCRIPTION,
-            #                                                   question=current_question)
-
+            
             speak(current_question, engine=TTS_ENGINE)
             answer_transcript = transcribe(stt_model)
             print(answer_transcript)
