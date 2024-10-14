@@ -139,7 +139,7 @@ if __name__ == "__main__":
             current_question_type = generated_question['question_type']
             switch_topic = generated_question['switch_topic']
 
-            user_preference = input(f"Current topic being questioned is {current_topic}.\nDo you wish to continue with the same topic or switch to a different one?") if not question_count else switch_topic
+            user_preference = input(f"Current topic being questioned is {current_topic}.\nDo you wish to continue with the same topic or switch to a different one?") if question_count else switch_topic
             if user_preference.lower() == "yes":
                 break
 
