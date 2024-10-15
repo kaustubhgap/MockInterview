@@ -1,2 +1,2 @@
 install:
-	pip install pandas
+	pip install pandas && pip install numpy
