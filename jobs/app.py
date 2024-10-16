@@ -158,14 +158,18 @@ if __name__ == "__main__":
             current_feedback = generated_question["feedback"]
             current_question_type = generated_question["question_type"]
             switch_topic = generated_question["switch_topic"]
+            print(switch_topic)
 
-            user_preference = (
-                input(
-                    f"Current topic being questioned is {current_topic}.\nDo you wish to continue with the same topic or switch to a different one?"
-                )
-                if question_count
-                else switch_topic
-            )
+            # user_preference = (
+            #     input(
+            #         f"Current topic being questioned is {current_topic}.\nDo you wish to continue with the same topic or switch to a different one?"
+            #     )
+            #     if question_count
+            #     else switch_topic
+            # )
+
+            user_preference = switch_topic
+            
             if user_preference.lower() == "yes":
                 break
 
@@ -185,10 +189,12 @@ if __name__ == "__main__":
                 "start_time"
             ] = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 
-            speak(current_question, engine=TTS_ENGINE)
-            answer_transcript: str = transcribe(stt_model)
-            print(answer_transcript)
-            generated_answer = {"answer": answer_transcript}
+            # speak(current_question, engine=TTS_ENGINE)
+            # answer_transcript: str = transcribe(stt_model)
+            # print(answer_transcript)
+            # generated_answer = {"answer": answer_transcript}
+            print("current_question:", current_question)
+            generated_answer = {"answer":input("Please answer: ")}
             print("my answer", generated_answer["answer"])
 
             current_answer: str = generated_answer["answer"]
